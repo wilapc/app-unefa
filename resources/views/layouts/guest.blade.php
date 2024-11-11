@@ -17,16 +17,19 @@
 </head>
 
 <body class="font-sans text-gray-900 antialiased">
-  <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-sky-700 dark:bg-gray-900">
+  <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gradient-to-l from-indigo-500 dark:bg-gray-900">
 
-    <div class="w-full sm:max-w-md px-6 py-4 bg-blue-300 border-4 dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
+    <div class="w-full sm:max-w-md px-6 py-4 bg-slate-100  border-indigo-500/100 rounded-lg border-4 dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
       <div class="flex justify-center">
         <a href="/" wire:navigate>
-          <img src="{{URL::asset('/image/logo.png')}}" class="w-32 h-32 fill-current text-gray-500" />
+          <img src="{{asset('/image/logo.png')}}" class="w-32 h-32 fill-current text-gray-500" />
         </a>
       </div>
       {{ $slot }}
     </div>
+    <footer class="py-4 text-center text-black font-mediun text-lg dark:text-white/70">
+      &copy; UNEFA {{date('Y')}}
+    </footer>
   </div>
 </body>
 

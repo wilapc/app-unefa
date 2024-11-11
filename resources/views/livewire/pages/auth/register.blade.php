@@ -11,6 +11,7 @@ use Livewire\Volt\Component;
 new #[Layout('layouts.guest')] class extends Component
 {
   public string $name = '';
+  public string $id_card = '';
   public string $email = '';
   public string $password = '';
   public string $password_confirmation = '';
@@ -22,6 +23,7 @@ new #[Layout('layouts.guest')] class extends Component
   {
     $validated = $this->validate([
       'name' => ['required', 'string', 'max:255'],
+      'id_card' => ['required', 'string', 'max:11'],
       'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
       'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
     ]);
@@ -43,6 +45,13 @@ new #[Layout('layouts.guest')] class extends Component
       <x-input-label for="name" :value="__('Nombre')" />
       <x-text-input wire:model="name" id="name" class="block mt-1 w-full" type="text" name="name" required autofocus autocomplete="name" />
       <x-input-error :messages="$errors->get('name')" class="mt-2" />
+    </div>
+
+        <!-- Id_Card -->
+    <div>
+      <x-input-label for="id_card" :value="__('Cedula')" />
+      <x-text-input wire:model="id_card" id="id_card" class="block mt-1 w-full" type="text" name="id_card" required autofocus autocomplete="id_card" />
+      <x-input-error :messages="$errors->get('id_card')" class="mt-2" />
     </div>
 
     <!-- Email Address -->
