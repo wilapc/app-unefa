@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Careers extends Model
 {
-    //
+    protected $fillable = [
+      'name',
+      'code',
+    ];
 }
