@@ -13,7 +13,7 @@ return [
     |
     */
 
-  'name' => env('APP_NAME', 'UNEFA'),
+  'name' => env('APP_NAME', 'App UNEFA'),
 
   /*
     |--------------------------------------------------------------------------
@@ -65,7 +65,7 @@ return [
     |
     */
 
-  'timezone' => env('APP_TIMEZONE', 'UTC'),
+  'timezone' => env('APP_TIMEZONE', 'America/Caracas'),
 
   /*
     |--------------------------------------------------------------------------

@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>UNEFA</title>
+  <title>{{ config('app.name', 'Laravel') }}</title>
 
   <link rel="shortcut icon" href="image/logo.png" type="image/x-icon">
   <!-- Fonts -->

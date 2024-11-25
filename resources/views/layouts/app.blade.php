@@ -35,9 +35,14 @@
       {{ $slot }}
     </main>
   </div>
-      <footer class="py-4 text-center bg-sky-900 text-white font-mediun text-lg dark:text-white/70">
-      &copy; UNEFA {{date('Y')}}
-    </footer>
+  <footer class="py-4 text-center bg-sky-900 text-white font-mediun text-lg dark:text-white/70">
+    &copy; UNEFA {{date('Y')}}
+  </footer>
+  @livewireScripts
+
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <x-livewire-alert::scripts />
 </body>
 
 </html>
