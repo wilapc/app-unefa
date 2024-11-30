@@ -1,31 +1,34 @@
-<div class="py-6 max-w-7xl backdrop-opacity-10 mx-auto rounded">
-  <x-slot name="header">
-    <div class="flex justify-between">
-      <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-        {{ __('Grupos') }}
-      </h2>
-      <x-primary-button class="bg-green-600">
-        {{ __('Añadir')}}
-      </x-primary-button>
-    </div>
-  </x-slot>
-  <div class="grid grid-cols-2">
-    @if(false)
-    <div class="col-span-2 flex sm:justify-center overflow-x-auto mx-auto sm:mx-0 sm:w-auto w-[300px]">
-      <!-- Table Group -->
-      <x-table></x-table>
-      <!-- Table Group End -->
-    </div>
-    @endif
-    <di class="col-span-2 overflow-x-auto mx-auto bg-sky-900 rounded-md">
-      <h2 class="mt-7 px-5 text-lg font-medium text-white dark:text-gray-100">
-        {{ __('Añadir Materia') }}
-      </h2>
+<div class="backdrop-opacity-10 mx-auto rounded">
+  
+  <div class="flex flex-col items-center h-screen">
+    
+    <div class=" flex sm:justify-center bg-slate-300 my-4 overflow-x-auto sm:mx-0 sm:w-auto w-[300px]">
+        <!-- Table Group -->
+      {{-- You can use any `$wire.METHOD` on `@row-click` --}}
+      <x-mary-table :headers="$header" :rows="$groups" >
+          @scope('cell_seccion',$groups)
+              <p class="text-base">S0{{$groups->semestre}}-2605-{{$groups->seccion}}</p>
+          @endscope
 
-      <p class="px-5 mt-1 text-sm text-white dark:text-gray-400">
-        {{ __("Ingresa los datos requeridos para obtener el grupo") }}
-      </p>
-      <livewire:pages.add-group />
+          @scope('cell_materia',$groups)
+              <p class="text-lg">{{$groups->materia}}</p>
+          @endscope
+
+          @scope('cell_codigo',$groups)
+              <p class="text-base">{{$groups->codigo}}</p>
+          @endscope
+          <x-slot:empty>
+            <x-mary-icon name="o-cube" label="No hay materias registradas!" />
+          </x-slot:empty>
+      </x-mary-table>
+        <!-- Table Group End -->
+    </div>
+  
+    <div class="my-4">
+        <x-mary-button label="Añadir" @click="$wire.modal1 = true" class="bg-green-500 text-white hover:text-black"/>
+    </div>
   </div>
-</div>
+    <x-mary-modal wire:model="modal1" class="backdrop-blur" box-class="bg-red-50 p-10 w-fit overflow-y-auto">    
+      <livewire:pages.add-group />
+    </x-mary-modal>
 </div>

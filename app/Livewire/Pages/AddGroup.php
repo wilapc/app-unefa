@@ -7,48 +7,45 @@ use App\Models\WhatsappGroup;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use App\Livewire\Forms\addGroup as FormsAddGroup;
-use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
+use Mary\Traits\Toast;
 use ReturnTypeWillChange;
 
 class AddGroup extends Component
 {
-  use LivewireAlert;
+  use Toast;
 
-  //public FormsAddGroup $form;
-  #[Validate('required')]
-  public $semester = "";
+  public FormsAddGroup $form;
 
   #[Validate('required')]
-  public $subject = "";
+  public $semester = '';
 
   #[Validate('required')]
-  public $section = "";
+  public $subject = '';
 
-  public function getIdWhatsappGroup(int $id)
-  {
-    return;
-  }
+  public bool $alert = false;
 
   public function save()
   {
-    $check = WhatsappGroup::where('subject_id', $this->subject)->get();
+    $check = WhatsappGroup::where('subject_id', $this->subject)->get(); //Busca si existe grupo creado
 
     if (count($check) == 0) {
-      WhatsappGroup::create(['link' => null, 'subject_id' => $this->subject]);
-      $get = WhatsappGroup::firstWhere('subject_id', $this->subject);
+      
+      WhatsappGroup::create(['link' => null, 'subject_id' => $this->subject]); //crea el grupo con el link vacio
+      $get = WhatsappGroup::firstWhere('subject_id', $this->subject); //obtiene el id del grupo con la materia a registrar
+    } 
+    $get = WhatsappGroup::firstWhere('subject_id', $this->subject);
+    $exist = StudentWhatsappGroup::where('user_id', Auth::id())->where('whatsapp_group_id', $get->id)->get();
+    if (count($exist) == 0) {
       StudentWhatsappGroup::create(['user_id' => Auth::id(), 'whatsapp_group_id' => $get->id]);
+      $this->success('Materia Registrada!');
+      $this->dispatch('subject-added');
+      $this->reset();
     } else {
-      $get = WhatsappGroup::firstWhere('subject_id', $this->subject);
-      StudentWhatsappGroup::create(['user_id' => Auth::id(), 'whatsapp_group_id' => $get->id]);
+      $this->alert = true;
     }
-    $this->alert('success', 'Guardado Correctamente!', [
-      'position' => 'center',
-      'toast' => false
-    ]);
 
-    $this->reset();
   }
 
   public function render()

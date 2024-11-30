@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('whatsapp_groups', function (Blueprint $table) {
             $table->id();
-            $table->string('link');
+            $table->string('link')->nullable(true);
             $table->unsignedBigInteger('subject_id');
             $table->foreign('subject_id')->references('id')->on('subjects');
             $table->timestamps();

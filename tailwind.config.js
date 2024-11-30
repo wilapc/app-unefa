@@ -7,6 +7,7 @@ export default {
     './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
     './storage/framework/views/*.php',
     './resources/views/**/*.blade.php',
+    './app/Livewire/**/*.php',
   ],
 
   theme: {
@@ -20,5 +21,7 @@ export default {
     },
   },
 
-  plugins: [forms],
+  plugins: [forms,
+    require("daisyui")
+  ],
 };
