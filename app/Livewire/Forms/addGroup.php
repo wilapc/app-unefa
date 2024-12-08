@@ -11,7 +11,6 @@ use Livewire\Form;
 class addGroup extends Form
 {
 
-  #[Validate('required')]
+  #[Validate('required', message: 'El campo no puede estar vacio')]
   public $section = '';
-
 }

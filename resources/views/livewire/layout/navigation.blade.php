@@ -33,9 +33,11 @@ new class extends Component
           <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
             {{ __('Inicio') }}
           </x-nav-link>
+          @role('student|delegate')
           <x-nav-link :href="route('whatsappGroup')" :active="request()->routeIs('whatsappGroup')" wire:navigate>
-            {{ __('Grupos') }}
+            {{ __('Whatsapp Link') }}
           </x-nav-link>
+          @endrole
         </div>
       </div>
 

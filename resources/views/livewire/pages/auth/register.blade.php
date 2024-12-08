@@ -30,7 +30,7 @@ new #[Layout('layouts.guest')] class extends Component
 
     $validated['password'] = Hash::make($validated['password']);
 
-    event(new Registered($user = User::create($validated)));
+    event(new Registered($user = User::create($validated)->assignRole('student')));
 
     Auth::login($user);
 
@@ -47,7 +47,7 @@ new #[Layout('layouts.guest')] class extends Component
       <x-input-error :messages="$errors->get('name')" class="mt-2" />
     </div>
 
-        <!-- Id_Card -->
+    <!-- Id_Card -->
     <div>
       <x-input-label for="id_card" :value="__('Cedula')" />
       <x-text-input wire:model="id_card" id="id_card" class="block mt-1 w-full" type="text" name="id_card" required autofocus autocomplete="id_card" />

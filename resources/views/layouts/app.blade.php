@@ -34,7 +34,7 @@
     <main>
       {{ $slot }}
     </main>
-    <x-mary-toast />
+    <x-mary-toast class="z-40" />
   </div>
   <footer class="py-4 text-center bg-sky-900 text-white font-mediun text-lg dark:text-white/70">
     &copy; UNEFA {{date('Y')}}
