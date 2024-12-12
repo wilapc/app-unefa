@@ -15,8 +15,8 @@ return [
 
     'sets' => [
             'default' => [
-              'path' => 'resources/icons/blade-heroicons',
-              'prefix' => 'o-'
+              'paths' => 'resources/icons/svg/brands',
+              'prefix' => 'fab-'
             ],
         // 'default' => [
         //
